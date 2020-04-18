@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+
+  <script src="./js/mouse.js"></script>
+
+  <script id="shader-fs" type="x-shader/x-fragment">
+    precision mediump float;
+
+    uniform float u_time;
+    uniform vec2 u_mouse;
+    uniform vec2 u_resolution;
+
+    void main(void) {
+      float d = distance(gl_FragCoord.xy, u_resolution.xy / 2.);
+      float v = step(distance(u_mouse, u_resolution.xy / 2.), d);
+      gl_FragColor = vec4(vec3(v), 1.);
+    }
+  </script>
+
+  <script id="shader-vs" type="x-shader/x-vertex">
+    attribute vec3 position;
+
+    void main(void) {
+      gl_Position = vec4(position, 1.0);
+    }
+  </script>
+</body>
+</html>

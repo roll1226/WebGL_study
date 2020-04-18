@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>study_glsl</title>
+</head>
+<body>
+  <canvas id="canvas" width="465" height="465">
+
+  <script id="shader-vs" type="x-shader/x-vertex">
+    attribute vec3 position;
+
+    void main(void) {
+        gl_Position = vec4(position, 1.0);
+    }
+  </script>
+
+  <script id="shader-fs" type="x-shader/x-fragment">
+    precision mediump float;
+    uniform float u_time;
+
+    void main()
+    {
+      gl_FragColor = vec4(abs(sin(u_time)),0.0,0.0,1.0);
+    }
+  </script>
+
+  <script src="./js/index.js"></script>
+</body>
+</html>
