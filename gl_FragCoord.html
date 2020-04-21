@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>study_glsl</title>
+  <title>Document</title>
 </head>
 <body>
-  <canvas id="canvas" width="465" height="465"></canvas>
+  <canvas id="canvas" width="500" height="500"></canvas>
 
+  <script src="./js/gl_FragCoord.js"></script>
   <script id="shader-vs" type="x-shader/x-vertex">
     attribute vec3 position;
 
@@ -17,17 +18,16 @@
   </script>
 
   <script id="shader-fs" type="x-shader/x-fragment">
-    precision mediump float;
-    uniform float u_time;
-    uniform vec2 u_mouse;
-    uniform vec2 u_resolution;
+      precision mediump float;
+      uniform float u_time;
+      uniform vec2 u_mouse;
+      uniform vec2 u_resolution;
 
-    void main()
-    {
-      gl_FragColor = vec4(u_mouse.x / u_resolution.x,0.0,0.0,1.0);
-    }
+      void main()
+      {
+        vec2 st = gl_FragCoord.xy/u_resolution;
+        gl_FragColor = vec4(st.x,st.y,0.0,1.0);
+      }
   </script>
-
-  <script src="./js/index.js"></script>
 </body>
 </html>
