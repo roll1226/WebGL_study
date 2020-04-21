@@ -9,7 +9,7 @@ window.onload = function() {
   let positionAttribute;
   let timeUniformLocation;
   let mouseUniformLocation;
-  // let resolutionUniformLocation;
+  let resolutionUniformLocation;
   let verticesBuffer;
   let vertices;
 
@@ -41,7 +41,7 @@ window.onload = function() {
 
   timeUniformLocation = gl.getUniformLocation(shaderProgram, 'u_time');
   mouseUniformLocation = gl.getUniformLocation(shaderProgram, 'u_mouse');
-  // resolutionUniformLocation = gl.getUniformLocation(shaderProgram, 'u_resolution');
+  resolutionUniformLocation = gl.getUniformLocation(shaderProgram, 'u_resolution');
 
   verticesBuffer = gl.createBuffer();//頂点の箱(VBO)を作成する。
   gl.bindBuffer(gl.ARRAY_BUFFER, verticesBuffer);// verticesBufferをARRAY_BUFFERに結び付ける
@@ -80,15 +80,15 @@ window.onload = function() {
 
   function render() {//60FPSで実行
     let time;
-    // let resolution;
+    let resolution;
 
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);//canvasを初期化
 
     time = (new Date().getTime() - startTime) / 1000;
-    // resolution = [canvas.width, canvas.height];
+    resolution = [canvas.width, canvas.height];
     gl.uniform1f(timeUniformLocation, time);
     gl.uniform2fv(mouseUniformLocation, mouse);
-    // gl.uniform2fv(resolutionUniformLocation, resolution);
+    gl.uniform2fv(resolutionUniformLocation, resolution);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, verticesBuffer);// positionBufferをARRAY_BUFFERに結び付ける
     gl.vertexAttribPointer(verticesBuffer, 3, gl.FLOAT, false, 0, 0);//attribute属性を登録。

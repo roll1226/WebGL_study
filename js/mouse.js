@@ -7,7 +7,7 @@ window.onload = function() {
   var mouse;
   var startTime;
   var positionAttribute;
-  var timeUniformLocatoin, mouseUniformLocation, resolutionUniformLocation;
+  var timeUniformLocation, mouseUniformLocation, resolutionUniformLocation;
   var verticesBuffer;
   var vertices;
 
@@ -43,7 +43,7 @@ window.onload = function() {
   positionAttribute = gl.getAttribLocation(shaderProgram, 'position');
   gl.enableVertexAttribArray(positionAttribute);
 
-  timeUniformLocatoin = gl.getUniformLocation(shaderProgram, 'u_time');
+  timeUniformLocation = gl.getUniformLocation(shaderProgram, 'u_time');
   mouseUniformLocation = gl.getUniformLocation(shaderProgram, 'u_mouse');
   resolutionUniformLocation = gl.getUniformLocation(shaderProgram, 'u_resolution');
 
@@ -96,7 +96,7 @@ window.onload = function() {
 
     time = (new Date().getTime() - startTime);
     resolution = [canvas.width, canvas.height];
-    gl.uniform1f(timeUniformLocatoin, time);
+    gl.uniform1f(timeUniformLocation, time);
     gl.uniform2fv(mouseUniformLocation, mouse);
     gl.uniform2fv(resolutionUniformLocation, resolution);
 
